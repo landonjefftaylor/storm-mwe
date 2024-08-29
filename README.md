@@ -9,7 +9,9 @@ Minimal working example to reproduce the "munmap_chunk(): invalid pointer" error
 4. `cd ..`
 5. `./build/errormwe models/ModifiedYeastPolarization.sm models/ModifiedYeastPolarization.csl`
 
-This should produce the following error code:
+## The Errors:
+
+On our machines, this produces the following error:
 
 `munmap_chunk(): invalid pointer`
 
@@ -19,7 +21,7 @@ GDB command: `gdb --args ./build/errormwe models/ModifiedYeastPolarization.sm mo
 
 ```
 (gdb) r
-Starting program: /home/landon/bench_staterep/stormMWE/build/errormwe models/ModifiedYeastPolarization.sm models/ModifiedYeastPolarization.csl
+Starting program: <files>/errormwe models/ModifiedYeastPolarization.sm models/ModifiedYeastPolarization.csl
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
  WARN (Program.cpp:238): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
@@ -45,7 +47,7 @@ Program received signal SIGABRT, Aborted.
 #10 0x000055555557b51e in std::_Vector_base<unsigned int, std::allocator<unsigned int> >::~_Vector_base (this=0x7fffffffce88, __in_chrg=<optimized out>) at /usr/include/c++/12/bits/stl_vector.h:366
 #11 0x000055555557b56f in std::vector<unsigned int, std::allocator<unsigned int> >::~vector (this=0x7fffffffce88, __in_chrg=<optimized out>) at /usr/include/c++/12/bits/stl_vector.h:733
 #12 0x000055555557ac68 in storm::storage::BitVectorHashMap<unsigned int, storm::storage::Murmur3BitVectorHash<unsigned int> >::~BitVectorHashMap (this=0x7fffffffce50, __in_chrg=<optimized out>)
-    at /home/landon/storm/build/include/storm/storage/BitVectorHashMap.h:20
-#13 0x0000555555572c77 in main (argc=3, argv=0x7fffffffdb68) at /home/landon/bench_staterep/stormMWE/src/main.cpp:98
+    at <files>/storm/build/include/storm/storage/BitVectorHashMap.h:20
+#13 0x0000555555572c77 in main (argc=3, argv=0x7fffffffdb68) at <files>/main.cpp:98
 ```
 
