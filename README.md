@@ -7,7 +7,13 @@ Minimal working example to reproduce the "munmap_chunk(): invalid pointer" error
 2. `cmake ..`
 3. `make`
 4. `cd ..`
-5. `./build/errormwe models/ModifiedYeastPolarization.sm models/ModifiedYeastPolarization.csl`
+5. `./build/errormwe models/ModifiedYeastPolarization.sm models/ModifiedYeastPolarization.csl 1000`
+
+Note that changing the `1000` to another number can change the error behavior. We noticed:
+
+- Between 534 and 908 states, the error is `double free or corruption (out)`
+- Above 908 states, the error is `munmap_chunk(): invalid pointer`, and the behavior seems to relate to deconstructing the vectors.
+- Around 10k states, the error is still `munmap_chunk(): invalid pointer`, but the behavior seems to relate to expanding/re-hashing the bitvectorhashmap.
 
 ## The Errors:
 
